@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 import { useRef } from 'react';
 import { useRouter } from 'next/router';
 
-export default function Home({vistorCountry}) {
+export default function Home() {
 
   const router = useRouter();
   const searchInputRef = useRef(null);
@@ -65,17 +65,7 @@ export default function Home({vistorCountry}) {
       </form>
 
       {/* Footer */}
-      <Footer results={vistorCountry} />
+      <Footer />
     </div>
   )
-}
-
-export async function getServerSideProps() {
-  const country = await fetch(`http://ip-api.com/json`);
-  const countryData = await country.json();
-  return {
-      props: {
-          vistorCountry:countryData
-      }
-  }
 }
