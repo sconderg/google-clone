@@ -1,14 +1,17 @@
 import { GlobeIcon } from "@heroicons/react/solid";
 import { useEffect, useState } from "react";
+import axios from 'axios';
 
 function Footer () {
 
     const [visCountry,setVisCountry] = useState(null);
 
     const getCountry = _ => {
-        fetch('https://ip-api.com/json')
-        .then(response => response.json())
-        .then(data => setVisCountry(`${data.city}, ${data.country}`));
+        // fetch('http://ip-api.com/json')
+        // .then(response => response.json())
+        // .then(data => setVisCountry(`${data.city}, ${data.country}`));
+        axios.get('http://ip-api.com/json')
+        .then((response) => setVisCountry(`${response.data.city}, ${response.data.country}`));
     }
 
     useEffect(() => {
